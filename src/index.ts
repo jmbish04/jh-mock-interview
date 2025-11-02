@@ -469,7 +469,7 @@ export class TranscriptRoom {
   async fetch(request: Request): Promise<Response> {
     if (request.headers.get('Upgrade') === 'websocket') {
       const pair = new WebSocketPair();
-      const [client, server] = Object.values(pair) as [WebSocket, WebSocket];
+      const { 0: client, 1: server } = pair;
       this.ctx.acceptWebSocket(server);
       return new Response(null, { status: 101, webSocket: client });
     }
