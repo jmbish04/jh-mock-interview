@@ -459,12 +459,12 @@ components:
 `;
 
 export class TranscriptRoom {
-  private readonly ctx: DurableObjectState;
   private closed = false;
 
-  constructor(state: DurableObjectState, private readonly env: Env) {
-    this.ctx = state;
-  }
+  constructor(
+    private readonly ctx: DurableObjectState,
+    private readonly env: Env,
+  ) {}
 
   async fetch(request: Request): Promise<Response> {
     if (request.headers.get('Upgrade') === 'websocket') {
